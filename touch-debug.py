@@ -36,32 +36,42 @@ root = Tk()
 root.attributes("-fullscreen", True)
 root.title("Touch Debug")
 
-#Variables
+# Variables
 counter = IntVar()
 counter.set(0)
-
 XData = IntVar()
 XData.set(0)
 YData = IntVar()
 YData.set(0)
 
 root.update()
-canvas = Canvas(root, width=root.winfo_width()-190, height=root.winfo_height()-50, background='white')
-canvas.grid(row=0, column=0, rowspan=3, columnspan=2)
+# Drawable canvas
+canvas = Canvas(root, width=root.winfo_width()-100, height=root.winfo_height()-50, background='white')
+canvas.grid(row=0, column=0, rowspan=2, columnspan=1)
 canvas.bind('<Button-1>', display_coordinates)
 
-labelCounter = Label(font="Times 20 bold", padx=5, pady=5, textvariable=counter)
-labelCounter.grid(row=0, column=2)
+# Counter groupbox
+groupboxCounter = LabelFrame(root, text="Counter:", bd=0)
+groupboxCounter.grid(row=0, column=1)
+labelCounter = Label(groupboxCounter, font="Times 20 bold", padx=5, pady=5, textvariable=counter)
+labelCounter.grid(row=0, column=0)
 
-labelX = Label(font="Times 20 bold", padx=5, pady=5, textvariable=XData)
-labelX.grid(row=1, column=2)
+# Circle information groupbox
+groupboxData = LabelFrame(root, text="Circle data")
+groupboxData.grid(row=1,column=1)
+labelXStatic = Label(groupboxData, text='X:')
+labelXStatic.grid(row=0, column=0)
+labelX = Label(groupboxData, padx=5, pady=5, textvariable=XData)
+labelX.grid(row=0, column=1)
+labelYStatic = Label(groupboxData, text='Y:')
+labelYStatic.grid(row=1, column=0)
+labelY = Label(groupboxData, padx=5, pady=5, textvariable=YData)
+labelY.grid(row=1, column=1)
+labelColor = Label
 
-labelY = Label(font="Times 20 bold", padx=5, pady=5, textvariable=YData)
-labelY.grid(row=2, column=2)
 
-
-w = Button(root, padx=10, pady=5, width=10, text="Exit", command=exit_screen)
-w.grid(row=4, column=0)
+buttonExit = Button(root, padx=10, pady=5, width=10, text="Exit", command=exit_screen)
+buttonExit.grid(row=4, column=0, columnspan=3)
 
 #label = Label(bd=4, relief="solid", font="Times 12 bold", bg="white", fg="black", text="text")
 #label.grid(row=1, column=1)
